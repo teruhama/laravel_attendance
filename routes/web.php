@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/index', 'TimeController@index');
+
+Route::get('/list', 'ListController@index');
+
+Route::get('/attendance', 'AttendanceController@index');
+
+Route::get('/operate', 'OperateController@index');
+
+Route::post('/operate/add', 'OperateController@add');
+
+Route::get('/test', function() { return view('test'); });
+
+Route::post('/attendance', 'AttendanceController@add');
