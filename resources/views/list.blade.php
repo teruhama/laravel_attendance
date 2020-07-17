@@ -75,6 +75,11 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
+                        @php
+                        //return redirect('index');
+                        var_dump("redirectttttttttttttttttttttttttt");
+                        @endphp
+
                         <a href="{{ route('login') }}">Login</a>
 
                         @if (Route::has('register'))

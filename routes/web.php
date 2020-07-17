@@ -28,3 +28,10 @@ Route::post('/operate/add', 'OperateController@add');
 Route::get('/test', function() { return view('test'); });
 
 Route::post('/attendance', 'AttendanceController@add');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
