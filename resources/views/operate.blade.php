@@ -88,6 +88,12 @@
                 /*color:red;*/
                 color: white;
             }
+            .alert {
+                width: 100%;
+                border: 1px solid red;
+                border-radius: 10px/10px;
+                background-color: lightgray;
+            }
         </style>
         <script language="javascript" type="text/javascript">
             function GoingToWork() {
@@ -119,6 +125,16 @@
                 </div>
             @endif
 
+            @if ($errors->any())
+            <div class="alert">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+            @endif
+            <br>
             <div class="content">
                 <div class="title m-b-md">
                     勤怠管理
@@ -142,6 +158,7 @@
                 <input type="text" id="minutes" name="minutes" style="width:40px;"></input>分
                 <input type="text" id="second" name="second" style="width:40px;"></input>秒
 
+                <br>
                 <a class="button" href="javascript:form.submit()">登録</a>
 
                 <a class="button" href="{{ url('/index') }}">メイン</a><br />
@@ -167,7 +184,7 @@
                 document.getElementById("year").value = now.getUTCFullYear();
                 document.getElementById("month").value = ('0' + (now.getUTCMonth()+1)).slice(-2);
                 document.getElementById("day").value = ('0' + (now.getUTCDate())).slice(-2);
-                document.getElementById("hour").value = ('0' + (now.getUTCHours()+9)).slice(-2);
+                document.getElementById("hour").value = ('0' + (now.getUTCHours())).slice(-2);
                 document.getElementById("minutes").value = ('0' + (now.getUTCMinutes())).slice(-2);
                 document.getElementById("second").value = ('0' + (now.getUTCSeconds())).slice(-2);
             }
