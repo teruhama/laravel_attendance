@@ -32,13 +32,18 @@ class OperateController extends Controller
 
     public function add(Request $request) {
 
-        $validatedData = $request->validate([
+        $validation = $request->validate([
             'year' => 'required|max:4',
             'month' => 'required|max:2',
             'day' => ['required', new TestRule],
             'date_kind' => 'required',
         ]);
 
+        if ($validation->fails()) {
+            return redirect('/operate')
+                    ->withErrors($validation)
+                    ->withInput();
+        }
 /*
         echo '\n';
         echo '\n';

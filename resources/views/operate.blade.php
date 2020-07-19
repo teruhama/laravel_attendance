@@ -151,7 +151,7 @@
                 <option value="3">退社</option>
                 </select>
 
-                <input type="text" id="year" name="year" style="width:60px;"></input>年
+                <input type="text" id="year" name="year" style="width:60px;" value="{{ old('year') }}"></input>年
                 <input type="text" id="month" name="month" style="width:40px;"></input>月
                 <input type="text" id="day" name="day" style="width:40px;"></input>日
                 <input type="text" id="hour" name="hour" style="width:40px;"></input>時
@@ -181,7 +181,10 @@
     <script type="text/javascript">
             function time(){
                 var now = new Date();
-                document.getElementById("year").value = now.getUTCFullYear();
+                // validationに引っかかった後のredirectの場合は前回値が格納されている。
+                if (document.getElementById("year").value == "") {
+                    document.getElementById("year").value = now.getUTCFullYear();
+                }
                 document.getElementById("month").value = ('0' + (now.getUTCMonth()+1)).slice(-2);
                 document.getElementById("day").value = ('0' + (now.getUTCDate())).slice(-2);
                 document.getElementById("hour").value = ('0' + (now.getUTCHours())).slice(-2);
