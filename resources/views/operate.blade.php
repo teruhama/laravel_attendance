@@ -88,6 +88,12 @@
                 /*color:red;*/
                 color: white;
             }
+            .alert {
+                width: 100%;
+                border: 1px solid red;
+                border-radius: 10px/10px;
+                background-color: lightgray;
+            }
         </style>
         <script language="javascript" type="text/javascript">
             function GoingToWork() {
@@ -119,6 +125,16 @@
                 </div>
             @endif
 
+            @if ($errors->any())
+            <div class="alert">
+                <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+                </ul>
+            </div>
+            @endif
+            <br>
             <div class="content">
                 <div class="title m-b-md">
                     勤怠管理
@@ -135,13 +151,14 @@
                 <option value="3">退社</option>
                 </select>
 
-                <input type="text" id="year" name="year" style="width:60px;"></input>年
+                <input type="text" id="year" name="year" style="width:60px;" value="{{ old('year') }}"></input>年
                 <input type="text" id="month" name="month" style="width:40px;"></input>月
                 <input type="text" id="day" name="day" style="width:40px;"></input>日
                 <input type="text" id="hour" name="hour" style="width:40px;"></input>時
                 <input type="text" id="minutes" name="minutes" style="width:40px;"></input>分
                 <input type="text" id="second" name="second" style="width:40px;"></input>秒
 
+                <br>
                 <a class="button" href="javascript:form.submit()">登録</a>
 
                 <a class="button" href="{{ url('/index') }}">メイン</a><br />
@@ -164,10 +181,13 @@
     <script type="text/javascript">
             function time(){
                 var now = new Date();
-                document.getElementById("year").value = now.getUTCFullYear();
+                // validationに引っかかった後のredirectの場合は前回値が格納されている。
+                if (document.getElementById("year").value == "") {
+                    document.getElementById("year").value = now.getUTCFullYear();
+                }
                 document.getElementById("month").value = ('0' + (now.getUTCMonth()+1)).slice(-2);
                 document.getElementById("day").value = ('0' + (now.getUTCDate())).slice(-2);
-                document.getElementById("hour").value = ('0' + (now.getUTCHours()+9)).slice(-2);
+                document.getElementById("hour").value = ('0' + (now.getUTCHours())).slice(-2);
                 document.getElementById("minutes").value = ('0' + (now.getUTCMinutes())).slice(-2);
                 document.getElementById("second").value = ('0' + (now.getUTCSeconds())).slice(-2);
             }

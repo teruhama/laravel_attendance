@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-//use Illuminate\Http\Request;
-use Request;
+use Illuminate\Http\Request;
+use App\Rules\TestRule;
 use App\Time;
 
 class OperateController extends Controller
@@ -27,24 +27,24 @@ class OperateController extends Controller
         // 状態　0：未出勤／1：出勤中／2：休憩中／3：退勤済
         $state = 0;
 
-        var_dump("111");
-        $time = new TIme();
-        $items = "";
-        //$hoge = Time::getData();
-        var_dump($time);
-        var_dump("222");
-        //$hoge = Time::all();
-        //$items = Time::all();
-        //DB::table('game')->get();
-
-//        return view('attendance', compact('hello_array', 'items', 'user_id', 'user_name', 'state'));
-
         return view('operate');
     }
 
     public function add(Request $request) {
-        var_dump("add");
 
+        $validation = $request->validate([
+            'year' => 'required|max:4',
+            'month' => 'required|max:2',
+            'day' => ['required', new TestRule],
+            'date_kind' => 'required',
+        ]);
+
+        if ($validation->fails()) {
+            return redirect('/operate')
+                    ->withErrors($validation)
+                    ->withInput();
+        }
+/*
         echo '\n';
         echo '\n';
         echo '<pre>';
@@ -81,6 +81,7 @@ class OperateController extends Controller
             var_dump("POST[year] = ");
             var_dump($_POST['year']);
         }
+*/
         // ユーザー情報
         // 引数で取得するかリクエストパラメーターか
         $user_id = 1;
