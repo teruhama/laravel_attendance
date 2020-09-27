@@ -11,6 +11,6 @@ class TimeTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Time::class, 1)->create();
+        factory(App\Time::class, 10)->create();
     }
 }
