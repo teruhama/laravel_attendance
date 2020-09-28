@@ -5,12 +5,21 @@ namespace App\Http\Controllers;
 //use Illuminate\Http\Request;
 use Request;
 use App\Time;
+use Illuminate\Support\Facades\Auth;
 
 class OperateController extends Controller
 {
     //
     public function index()
     {
+        //phpinfo();
+
+        // ログインしているかどうか
+        if (!Auth::check()) {
+            // 一度リダイレクトを示すページをかませても良いかも。
+            return redirect('/login');
+        }
+
         $hello_array = ['Hello', 'こんにちは', 'ニーハオ'];
 
         // ログインしたユーザー情報を設定
