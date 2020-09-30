@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Time extends Model
 {
@@ -12,28 +13,33 @@ class Time extends Model
         //$hoge = Time::
         //DB::table('game')->get();
         $hoge = Time::all();
-        var_dump("hoge = " . $hoge);
+        //var_dump("hoge = " . $hoge);
         $hoge = Time::where('user_id', 1)->where('del_flg', 0)->get();
-        var_dump("id = 1 : ");
-        var_dump($hoge);
+        //var_dump("id = 1 : ");
+        //var_dump($hoge);
         //return '名前：'.$this -> name.'---メール：'.$this -> email;
         return "timeeeeeeeeeeeee";
     }
 
-    // 指定したユーザーID、年月で勤怠データを取得する。
+    /*
+     * 指定したユーザーID、年月で勤怠データを取得する。
+     * @param
+     * @param
+     * @param
+     * 
+    */
     public function getUserAttendance($user_id, $year, $month)
     {
-        //$hoge = Time::
-        //DB::table('game')->get();
-        $hoge = Time::all();
-        var_dump("hoge = " . $hoge);
-        $ret = Time::where('user_id', 1)->where('del_flg', 0)->orderBy('date')->orderBy('date_kind')->get();
-        var_dump("id = 1 : ");
-        var_dump($ret);
+        $data = Time::select(DB::raw('DATE_FORMAT(date, "%d") AS day'), 'date', 'date_kind')
+                    ->where('user_id', $user_id)
+                    ->where('del_flg', 0)
+                    ->whereYear('date', '=', $year)
+                    ->whereMonth('date', '=', $month)
+                    ->orderBy('date')
+                    ->orderBy('date_kind')
+                    ->get();
 
-        
-        //return '名前：'.$this -> name.'---メール：'.$this -> email;
-        return $ret;
+        return $data;
     }
 
     // データを追加

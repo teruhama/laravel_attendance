@@ -22,24 +22,38 @@ class ListController extends Controller
         $time = new Time();
         // Date取得
         $attendance = $time->getUserAttendance($user_id, $year, $month);
+        // データ成形
+/*        
+        $days = date($year . "/" . $month . "/1", strtotime('last day of'));
+var_dump("days === ");
+var_dump($days);
+var_dump("\n");
+echo "\n";
+        $last_day = strtotime('last day', strtotime($year . "-" . $month . "-01"));
+var_dump("last_day === ");
+var_dump($last_day);
+echo "\n";
+        $last_days = date('t', strtotime('last day', strtotime($year . "-" . $month . "-01")));
+var_dump("last_days === ");
+var_dump($last_days);
+echo "\n";
+*/
+        $year_month = $year . '-' . $month;
+        $last_day = date('d', strtotime('last day of ' . $year_month));
+
+        $data = array();
+
+        // array_searchで日付ごとにデータを取得
+
+        // 日付、kindごとに1日あたりの配列を成形
+
+        // array_push
+
+        // 日付分回す
+
         //$attendance = "";
         var_dump("attendance = " . $attendance);
 
-/*
-        $hello = 'Hello,World!';
-        $hello_array = ['Hello', 'こんにちは', 'ニーハオ'];
-
-        var_dump("111");
-        $time = new TIme();
-        $items = "";
-        //$hoge = Time::getData();
-        var_dump("222");
-        $hoge = $time->getData();
-        var_dump("333");
-        //$hoge = Time::all();
-        //$items = Time::all();
-        //DB::table('game')->get();
-*/
         return view('list', compact('year', 'month', 'attendance'));
 
     }

@@ -96,6 +96,12 @@
 
 <br>
 <div id="tbl-bdr">
+<div>
+<a href="">前の月</a>
+<label>{{ $year }}年{{ $month }}月</label>
+<a href="">次の月</a>
+<a href="">カレンダー表示</a>
+</div>
 <table style="border">
 @foreach ($attendance as $key => $value)
     @php

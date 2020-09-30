@@ -14,15 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+// 「メイン」画面
 Route::get('/index', 'TimeController@index');
-
+// 「一覧」画面
 Route::get('/list', 'ListController@index');
-
+// 「勤怠報告」画面
 Route::get('/attendance', 'AttendanceController@index');
-
+// 「データ管理」画面
 Route::get('/operate', 'OperateController@index');
-
+// 「データ管理」画面-データ登録処理
 Route::post('/operate/add', 'OperateController@add');
 
 Route::get('/test', function() { return view('test'); });
@@ -34,4 +34,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
