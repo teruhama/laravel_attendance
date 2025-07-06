@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blade;
 
 //use Illuminate\Http\Request;
 use Request;
 use App\Time;
 
-class AttendanceController extends Controller
+class AttendanceForBladeController extends Controller
 {
     //
     public function index()
@@ -37,14 +37,15 @@ class AttendanceController extends Controller
         //DB::table('game')->get();
 
         return view('attendance', compact('hello_array', 'items', 'user_id', 'user_name', 'state'));
-
     }
 
-    public function add() {
+    public function add()
+    {
         var_dump("add");
     }
 
-    public function startWork() {
-        var_dump("startWork innnn");   
+    public function startWork()
+    {
+        var_dump("startWork innnn");
     }
 }

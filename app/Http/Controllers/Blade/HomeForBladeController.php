@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blade;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class HomeForBladeController extends Controller
 {
     /**
      * Create a new controller instance.

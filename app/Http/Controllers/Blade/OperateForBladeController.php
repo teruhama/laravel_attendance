@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blade;
 
 //use Illuminate\Http\Request;
 use Request;
 use App\Time;
 
-class OperateController extends Controller
+class OperateForBladeController extends Controller
 {
     //
     public function index()
@@ -37,12 +37,13 @@ class OperateController extends Controller
         //$items = Time::all();
         //DB::table('game')->get();
 
-//        return view('attendance', compact('hello_array', 'items', 'user_id', 'user_name', 'state'));
+        //        return view('attendance', compact('hello_array', 'items', 'user_id', 'user_name', 'state'));
 
         return view('operate');
     }
 
-    public function add(Request $request) {
+    public function add(Request $request)
+    {
         var_dump("add");
 
         echo '\n';
@@ -85,9 +86,11 @@ class OperateController extends Controller
         // 引数で取得するかリクエストパラメーターか
         $user_id = 1;
 
-        if (isset($_POST['year']) && isset($_POST['month']) && isset($_POST['day']) 
-        && isset($_POST['hour']) && isset($_POST['minutes']) && isset($_POST['second']) ) {
-/*
+        if (
+            isset($_POST['year']) && isset($_POST['month']) && isset($_POST['day'])
+            && isset($_POST['hour']) && isset($_POST['minutes']) && isset($_POST['second'])
+        ) {
+            /*
             $year = strval($_POST['year']);
             $month = strval($_POST['month']);
             $day = strval($_POST['day']);
@@ -105,7 +108,7 @@ class OperateController extends Controller
             $date_kind = $_POST['date_kind'];
 
             $date = date('Y-m-d H:i:s', strtotime($year . '-' . $month . '-' . $day . ' ' . $hour . ':' . $minutes . ':' . $second));
-            
+
             // データ登録処理
             $time = new Time();
             $ret = $time->insertAttendance($user_id, $date, $date_kind);
@@ -125,7 +128,7 @@ class OperateController extends Controller
             var_dump("====================");
             echo ("\n");
         }
-/*        
+        /*        
         month = $_POST['month'];
         day = $POST['day'];
         hour = $POST['hour'];

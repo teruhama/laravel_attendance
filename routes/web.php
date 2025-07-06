@@ -15,23 +15,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', 'TimeController@index');
+Route::get('/index', 'TimeForBladeController@index');
 
-Route::get('/list', 'ListController@index');
+Route::get('/list', 'ListForBladeController@index');
 
-Route::get('/attendance', 'AttendanceController@index');
+Route::get('/attendance', 'AttendanceForBladeController@index');
 
-Route::get('/operate', 'OperateController@index');
+Route::get('/operate', 'OperateForBladeController@index');
 
-Route::post('/operate/add', 'OperateController@add');
+Route::post('/operate/add', 'OperateForBladeController@add');
 
-Route::get('/test', function() { return view('test'); });
+Route::get('/test', function () {
+    return view('test');
+});
 
-Route::post('/attendance', 'AttendanceController@add');
+Route::post('/attendance', 'AttendanceForBladeController@add');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeForBladeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeForBladeController@index')->name('home');

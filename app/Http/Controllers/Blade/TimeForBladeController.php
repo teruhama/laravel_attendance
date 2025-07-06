@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blade;
 
 //use Illuminate\Http\Request;
 use Request;
 use App\Time;
 
-class TimeController extends Controller
+class TimeForBladeController extends Controller
 {
     //
     public function index()
@@ -14,7 +14,7 @@ class TimeController extends Controller
         $hello = 'Hello,World!';
         $hello_array = ['Hello', 'こんにちは', 'ニーハオ'];
 
-//DB::table('attendance')->get();
+        //DB::table('attendance')->get();
 
         var_dump("111");
         $time = new TIme();
@@ -28,6 +28,5 @@ class TimeController extends Controller
         //DB::table('game')->get();
 
         return view('index', compact('hello', 'hello_array', 'items', 'hoge'));
-
     }
 }
