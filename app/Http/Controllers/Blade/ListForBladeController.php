@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blade;
 
 //use Illuminate\Http\Request;
 use Request;
 use App\Time;
 
-class ListController extends Controller
+class ListForBladeController extends Controller
 {
     //
     public function index()
@@ -25,7 +25,7 @@ class ListController extends Controller
         //$attendance = "";
         var_dump("attendance = " . $attendance);
 
-/*
+        /*
         $hello = 'Hello,World!';
         $hello_array = ['Hello', 'こんにちは', 'ニーハオ'];
 
@@ -41,6 +41,5 @@ class ListController extends Controller
         //DB::table('game')->get();
 */
         return view('list', compact('year', 'month', 'attendance'));
-
     }
 }
